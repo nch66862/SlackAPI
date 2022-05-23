@@ -8,8 +8,9 @@ repositories {
 
 dependencies {
     implementation("com.slack.api:slack-api-client:1.22.1")
+    implementation('io.github.cdimascio:java-dotenv:5.2.2')
 }
 
 application {
-    mainClassName = "Example"
+    mainClass.set("Example")
 }
