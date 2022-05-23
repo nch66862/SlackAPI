@@ -5,16 +5,17 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.asElements;
+import static com.slack.api.model.block.element.BlockElements.button;
+
 public class Example {
     public static void main(String[] args) throws Exception {
         Slack slack = Slack.getInstance();
-        //ApiTestResponse response = slack.methods().apiTest(r -> r.foo("bar"));
-
-        // Load an env variable
-        // If the token is a bot token, it starts with `xoxb-` while if it's a user token, it starts with `xoxp-`
         Dotenv dotenv = Dotenv.load();
         String token = dotenv.get("SLACK_TOKEN");
-        //String token = System.getenv("SLACK_TOKEN");
         System.out.println(token);
 
         // Initialize an API Methods client with the given token
@@ -23,7 +24,16 @@ public class Example {
         // Build a request object
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                 .channel("#random") // Use a channel ID `C1234567` is preferrable
-                .text("success with .env file!")
+                .blocks(asBlocks(
+                        section(section -> section.text(markdownText("*Please select a restaurant:*"))),
+                        divider(),
+                        actions(actions -> actions
+                                .elements(asElements(
+                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Farmhouse"))).value("v1")),
+                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Kin Khao"))).value("v2"))
+                                ))
+                        )
+                ))
                 .build();
 
         // Get a response as a Java object
