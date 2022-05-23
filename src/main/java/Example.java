@@ -1,5 +1,3 @@
-package org.example;
-
 import com.slack.api.Slack;
 import com.slack.api.methods.response.api.ApiTestResponse;
 
