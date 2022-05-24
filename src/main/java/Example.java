@@ -23,14 +23,14 @@ public class Example {
 
         // Build a request object
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                .channel("#random") // Use a channel ID `C1234567` is preferrable
+                .channel("C03GDT13S03") // Use a channel ID `C1234567` is preferrable
                 .blocks(asBlocks(
-                        section(section -> section.text(markdownText("*Please select a restaurant:*"))),
+                        section(section -> section.text(markdownText("Click A Button"))),
                         divider(),
                         actions(actions -> actions
                                 .elements(asElements(
-                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Farmhouse"))).value("v1")),
-                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Kin Khao"))).value("v2"))
+                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Number1"))).value("1")),
+                                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Number2"))).value("2"))
                                 ))
                         )
                 ))
