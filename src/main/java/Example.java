@@ -1,15 +1,14 @@
 import com.slack.api.Slack;
-import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.asElements;
 import static com.slack.api.model.block.element.BlockElements.button;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 
 public class Example {
     public static void main(String[] args) throws Exception {
@@ -23,9 +22,10 @@ public class Example {
 
         // Build a request object
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                .channel("C03GDT13S03")
+                .channel("C03GG8WE936")
+                .text("Custom Plan Notification - <@U03GDT130N7>")
                 .blocks(asBlocks(
-                        section(section -> section.text(markdownText("Click A Button"))),
+                        section(section -> section.text(markdownText("Custom Plan Notification - <@U03GDT130N7>"))),
                         divider(),
                         actions(actions -> actions
                                 .elements(asElements(
